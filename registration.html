@@ -21,9 +21,10 @@
   <link rel="stylesheet" href="css/main.css">
 
   <style>
-    *{
-  font-family: "Chakra Petch", serif;
-}
+    * {
+      font-family: "Chakra Petch", serif;
+    }
+
     :root {
       --primary-color: #007bff;
       --primary-bg: #e9f7ff;
@@ -37,6 +38,20 @@
       background-color: var(--primary-color) !important;
     }
 
+    /* แก้ไข iframe ให้แสดงผลเต็มที่ */
+    #iframeContainer {
+      width: 100%;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    #orderForm {
+      width: 100%;
+      min-height: 600px;
+      border: none;
+      overflow: auto;
+    }
+
     .full-screen {
       position: fixed;
       top: 0;
@@ -45,17 +60,14 @@
       height: 100vh;
       background: white;
       z-index: 1000;
-    }
-
-    #orderForm {
-      width: 100%;
-      height: 500px;
-      border: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
     .full-screen #orderForm {
-      width: 100vw;
-      height: 100vh;
+      width: 90vw;
+      height: 90vh;
     }
   </style>
 </head>
@@ -108,7 +120,7 @@
 
       <!-- Embedded Section for Checking Status -->
       <section class="mt-5">
-        <h4 class="fw-bold mb-4">สั่งซื้อเสื้อ</h4>
+        <h4 class="fw-bold mb-4">สั่งซื้อเสื้อ</h4>  <li class="mb-3 text-danger"><i class="fas fa-circle me-2 small"></i> แนะนำให้เปิด Desktop Mode/iPAD </li>
         <button id="toggleFullscreen" class="btn btn-primary mb-3">เต็มจอ</button>
         <div id="iframeContainer">
           <iframe id="orderForm"
@@ -141,6 +153,16 @@
         this.textContent = "เต็มจอ";
       }
     });
+
+    // ปรับขนาด iframe อัตโนมัติให้พอดีกับเนื้อหาภายใน
+    document.getElementById("orderForm").onload = function () {
+      var iframe = document.getElementById("orderForm");
+      try {
+        iframe.style.height = iframe.contentWindow.document.body.scrollHeight + "px";
+      } catch (error) {
+        console.warn("Cannot access iframe content due to cross-origin restrictions.");
+      }
+    };
   </script>
 </body>
 
