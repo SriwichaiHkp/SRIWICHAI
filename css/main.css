@@ -1,0 +1,87 @@
+*{
+  font-family: "Chakra Petch", serif;
+}
+
+
+.responsive-img {
+    width: 100%;
+    height: auto;
+    max-height: 500px;
+    object-fit: cover;
+  }
+
+  /* CSS สำหรับ Animation */
+  @keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+  }
+
+  .container-xxl.py-4,
+  .container-xl.py-3,
+  .container-fluid.py-5,
+  .container-fluid.py-3 {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.5s ease, transform 1.5s ease;
+  }
+
+  .container-xxl.py-4.animate,
+  .container-xl.py-3.animate,
+  .container-fluid.py-5.animate,
+  .container-fluid.py-3.animate {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  /* กำหนดตัวแปรสีสำหรับธีม */
+  :root {
+    --primary-color: #007bff; /* สีฟ้า (Bootstrap primary) */
+    --primary-bg: #e9f7ff;    /* สีพื้นหลังอ่อน */
+  }
+  
+  /* ตั้งค่าสีพื้นหลังของทั้งเว็บไซต์ */
+  body {
+    background-color: var(--primary-bg);
+  }
+  
+  /* Navigation Bar ให้มีพื้นหลังสีฟ้า */
+  .navbar {
+    background-color: var(--primary-color) !important;
+  }
+  
+  /* Hero Section */
+  .hero-section {
+    background: url('img/hero-bg.jpg') center center/cover no-repeat;
+    height: 100vh;
+    position: relative;
+  }
+  /* Overlay สีฟ้าสำหรับ Hero Section */
+  .hero-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 123, 255, 0.5);
+  }
+  .hero-section .container {
+    position: relative;
+    z-index: 2;
+  }
+  
+  /* กำหนดสีหัวข้อในส่วนต่าง ๆ */
+  .section-title {
+    color: var(--primary-color);
+  }
+  
+  /* Call-to-Action Section ให้มีพื้นหลังสีอ่อน */
+  .cta-section {
+    background-color: var(--primary-bg);
+  }
+  
+  /* Footer ให้มีพื้นหลังสีฟ้าและตัวอักษรสีขาว */
+  .footer {
+    background-color: var(--primary-color);
+    color: #fff;
+  }
