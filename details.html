@@ -24,7 +24,7 @@
       --primary-color: #007bff;
       --primary-bg: #e9f7ff;
     }
-    
+
     body {
       background-color: var(--primary-bg);
     }
@@ -33,40 +33,26 @@
       background-color: var(--primary-color) !important;
     }
 
-    .hero-section {
-      background: url('img/hero-bg.jpg') center center/cover no-repeat;
-      height: 100vh;
-      position: relative;
-    }
-
-    .hero-section::before {
-      content: "";
-      position: absolute;
+    .full-screen {
+      position: fixed;
       top: 0;
       left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: white;
+      z-index: 1000;
+    }
+
+    #orderForm {
       width: 100%;
-      height: 100%;
-      background: rgba(0, 123, 255, 0.5);
+      height: 500px;
+      border: none;
     }
 
-    .hero-section .container {
-      position: relative;
-      z-index: 2;
+    .full-screen #orderForm {
+      width: 100vw;
+      height: 100vh;
     }
-
-    .section-title {
-      color: var(--primary-color);
-    }
-
-    .cta-section {
-      background-color: var(--primary-bg);
-    }
-
-    .footer {
-      background-color: var(--primary-color);
-      color: #fff;
-    }
-
   </style>
 </head>
 
@@ -119,8 +105,9 @@
       <!-- Embedded Section for Checking Status -->
       <section class="mt-5">
         <h4 class="fw-bold mb-4">สั่งซื้อเสื้อ</h4>
-        <div class="ratio ratio-16x9">
-          <iframe id="orderForm" 
+        <button id="toggleFullscreen" class="btn btn-primary mb-3">เต็มจอ</button>
+        <div id="iframeContainer">
+          <iframe id="orderForm"
             src="https://script.google.com/macros/s/AKfycbx9j0cZ7-fk9ie0GE87mZOq4MQ2Rnet_UqiDJuOtNaV6JtJK-lcK3pFNmFjHVbYcBu-Fw/exec"
             allowfullscreen>
           </iframe>
@@ -139,7 +126,18 @@
 
   <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="script/main.js"></script>
+  <script>
+    document.getElementById("toggleFullscreen").addEventListener("click", function () {
+      var container = document.getElementById("iframeContainer");
+      if (!container.classList.contains("full-screen")) {
+        container.classList.add("full-screen");
+        this.textContent = "ออกจากเต็มจอ";
+      } else {
+        container.classList.remove("full-screen");
+        this.textContent = "เต็มจอ";
+      }
+    });
+  </script>
 </body>
 
 </html>
